@@ -1,0 +1,15 @@
+type Token {
+  id: ID!
+  token: String!
+  ip: String!
+  user: User
+}
+type Query {
+  getTokens: [Token!]!
+  getToken(id: ID!): Token!
+}
+type Mutation {
+  createToken(userEmail: String!, token: String!, ip: String!): Token!
+  deleteToken(id: ID!): Token!
+  deleteTokens: String!
+}

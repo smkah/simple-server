@@ -1,0 +1,20 @@
+type UserRole {
+  id: ID!
+  userId: ID!
+  roleId: ID!
+  roles: [Role!]
+  users: [User!]
+}
+input UserRoleInput {
+  userId: ID!
+  roleId: ID!
+}
+type Query {
+  getUserRoles: [UserRole!]!
+  getUserRole(id: ID!): UserRole!
+}
+type Mutation {
+  createUserRole(data: UserRoleInput!): UserRole!
+  updateUserRole(id: ID!, data: UserRoleInput!): UserRole!
+  deleteUserRole(id: ID!): UserRole!
+}

@@ -1,0 +1,18 @@
+type RolePermission {
+  id: ID!
+  roleId: ID!
+  permissionId: ID!
+}
+input RolePermissionInput {
+  roleId: ID!
+  permissionId: ID!
+}
+type Query {
+  getRolePermissions: [RolePermission!]!
+  getRolePermission(id: ID!): RolePermission!
+}
+type Mutation {
+  createRolePermission(data: RolePermissionInput!): RolePermission!
+  updateRolePermission(id: ID!, data: RolePermissionInput!): RolePermission!
+  deleteRolePermission(id: ID!): RolePermission!
+}
