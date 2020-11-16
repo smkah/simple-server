@@ -38,7 +38,6 @@ export function createContext(ctx): Context {
   ctx.req.connection.socket.remoteAddress
 
   const parseQuery = parse(ctx.req.body.query, { allowLegacySDLEmptyFields: false })
-
   // @ts-ignore
   const queryName = parseQuery.definitions[0].selectionSet.selections[0].name.value
 

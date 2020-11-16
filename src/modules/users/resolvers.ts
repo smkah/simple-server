@@ -56,14 +56,16 @@ const resolvers = {
           }
         }
       })
+      if (!user) throw new Error('User does not exist!')
+      const isEqual = await bcrypt.compare(password, user.password)
+      if (!isEqual) throw new Error('Password is incorrect!')
+
       const rolesPermissions = user.UserRole.map(({ Role }) => {
         const name = Role.name
         const permissions = Role.RolePermission.map(({ Permission }) => Permission.name)
         return { name, permissions }
       })
-      if (!user) throw new Error('User does not exist!')
-      const isEqual = await bcrypt.compare(password, user.password)
-      if (!isEqual) throw new Error('Password is incorrect!')
+
       const token = jwt.sign(
         { userId: user.id, permissions: rolesPermissions },
         JSON.stringify(process.env.SECRET_KEY)
